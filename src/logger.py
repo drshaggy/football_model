@@ -1,5 +1,7 @@
 from enum import Enum
 import datetime
+import os
+from constants import *
 
 
 class Levels(Enum):
@@ -14,8 +16,10 @@ file = None
 
 def start_logging(p):
     date = datetime.datetime.now().strftime("%d%m%y")
-    path = p + 'log-' + date + '.txt'
+    path = p + '/log-' + date + '.txt'
     global file
+    if not os.path.isdir(LOG_DIR):
+        os.system('mkdir ' + LOG_DIR)
     file = open(path, 'a')
 
 
