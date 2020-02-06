@@ -1,4 +1,5 @@
 from enum import Enum
+import datetime
 
 
 class Levels(Enum):
@@ -8,10 +9,20 @@ class Levels(Enum):
     CRITICAL = 3
 
 
-class Logger:
-    def __init__(self, path):
-        self.path = path + 'log.txt'
+file = None
 
-    def log(self, message, level = Levels.INFO):
-        log_entry = level.name + ": " + message
-        print(log_entry)
+
+def start_logging(p):
+    date = datetime.datetime.now().strftime("%d%m%y")
+    path = p + 'log-' + date + '.txt'
+    global file
+    file = open(path, 'a')
+
+
+def log(message, level=Levels.INFO):
+    global file
+    time = datetime.datetime.now().strftime("%H:%M:%S")
+    log_entry = time + ' ' + level.name + ": " + message
+    file.write(log_entry)
+    file.write('\n')
+    print(log_entry)

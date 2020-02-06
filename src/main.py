@@ -1,27 +1,41 @@
 #!/usr/bin/env python3
 import sys
-from data_downloader import Downloader
-from logger import *
-from db_manager import DbManager
+import data_downloader as downloader
+import logger
+from logger import Levels
+import db_manager as db
 from commands import Commands
+from os import path, system
+from constants import *
 
 
 class Main:
     def __init__(self):
-        self.logger = Logger('../logs/')
-        self.downloader = Downloader()
-        self.db = DbManager('database.db')
+        logger.start_logging(LOG_DIR)
+        self.first_time_setup()
+        db.connect('database.db')
         self.parse_args()
 
     def parse_args(self):
         args = sys.argv
         try:
             if args[1] == Commands.update.name:
-                self.downloader.download()
+                downloader.download()
             else:
-                self.logger.log("Unknown Command", Levels.ERROR)
+                logger.log("Unknown Command", Levels.ERROR)
         except IndexError:
-            self.logger.log("No command supplied", Levels.ERROR)
+            logger.log("No command supplied", Levels.ERROR)
+        self.cleanup()
+
+    def first_time_setup(self):
+        for d in DIRS:
+            if not path.exists(DIRS[d]):
+                message = 'Creating new folder ' + DIRS[d]
+                logger.log(message)
+                system('mkdir ' + DIRS[d])
+
+    def cleanup(self):
+        db.disconnect()
 
 
 if __name__ == "__main__":
