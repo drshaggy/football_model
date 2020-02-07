@@ -1,5 +1,9 @@
 import platform
 
+
+# -------------------------------------------------------------
+# Database constants
+# -------------------------------------------------------------
 if platform.system() == 'Windows':
     DB_DIR = '..\\db'
     DATA_DIR = '..\\data'
@@ -8,6 +12,7 @@ elif platform.system() == 'Linux' or platform.system() == 'Darwin':
     DB_DIR = '../db'
     DATA_DIR = '../data'
     LOG_DIR = '../logs'
+
 
 DIRS = {}
 DIRS['DB_DIR'] = DB_DIR
