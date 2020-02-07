@@ -16,7 +16,7 @@ file = None
 
 def start_logging(p):
     date = datetime.datetime.now().strftime("%d%m%y")
-    path = p + '/log-' + date + '.txt'
+    path = p + '/log-' + date + '.log'
     global file
     if not os.path.isdir(LOG_DIR):
         os.system('mkdir ' + LOG_DIR)

@@ -10,7 +10,7 @@ def read_file(level):
     p = LOG_DIR
     date = datetime.datetime.now().strftime("%d%m%y")
     try:
-        path = p + 'log-' + date + '.txt'
+        path = p + '/log-{}.log'.format(date)
         f = open(path, 'r')
         for line in f:
             arr = line.split(' ')
