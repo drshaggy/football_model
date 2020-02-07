@@ -56,7 +56,7 @@ def csv_to_db(csv_file_path, table_name):
         read_csv.to_sql(table_name, db.conn, if_exists='append', index=False)
 
     except UnicodeDecodeError:
-        logger.log('Could not read {} into database table {}'.format(csv_file_path, table_name), Levels.WARNING. )
+        logger.log('Could not read {} into database table {}'.format(csv_file_path, table_name), Levels.WARNING)
 
 
 
