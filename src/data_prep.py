@@ -48,6 +48,9 @@ def download_all():
 # -------------------------------------------------------------
 # Reads data from csv and imports into sql table. Overwrites
 # table every time.
+# Inputs:
+#     csv_file_path - path to csv file to import
+#     table_name - name of table in sqlite database
 # -------------------------------------------------------------
 def csv_to_db(csv_file_path, table_name):
     db.conn.execute("DROP TABLE IF EXISTS {}".format(table_name))
