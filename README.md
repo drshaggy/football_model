@@ -3,7 +3,7 @@
 ## Install Intructions
 
 1. `git clone https://gitlab.com/drshaggy/football_model.git`
-1. `cd football_model`
+1. `cd football_model/src`
 1. `python3 setup.py`
 1. `python3 download_football-data.py`
 
