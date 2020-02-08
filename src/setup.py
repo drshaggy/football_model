@@ -26,5 +26,5 @@ def first_time_setup():
 # -------------------------------------------------------------
 # Execute
 # -------------------------------------------------------------
-if __name__ == "__main__":
-    first_time_setup()
+logger.start_logging(LOG_DIR)
+first_time_setup()
